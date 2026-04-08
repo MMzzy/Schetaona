@@ -1,0 +1,731 @@
+.page {
+  overflow-x: clip;
+  scroll-snap-type: y proximity;
+}
+
+/* ══════════════════════════════════════
+   1. HERO – sve centrirano
+══════════════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #1c3320;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4);
+  z-index: 0;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 6vw;
+  animation: fadeInUp 1s ease both;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 13rem);
+  color: var(--color-white);
+  line-height: 1;
+  letter-spacing: -3px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.heroSub {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeInUp 1s 0.25s ease both;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: bounce 2.5s infinite;
+}
+
+.scrollHint span {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.scrollArrow {
+  width: 16px;
+  height: 16px;
+  border-right: 2px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  transform: rotate(45deg);
+}
+
+/* ══════════════════════════════════════
+   2. CTA – centrirani buttoni
+══════════════════════════════════════ */
+.ctaSection {
+  background: var(--color-white);
+  min-height: 100vh;
+  padding: 4rem 6vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  scroll-snap-align: end;
+}
+
+.ctaCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 2rem 2.5rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 24px;
+  width: 100%;
+  max-width: unset;
+  background: white;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ctaCard:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 4px 6px 0 0 var(--color-primary);
+}
+
+.ctaCardImg {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-bg-light); /* fallback ako nema slike */
+}
+
+.ctaCardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ctaButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  width: 100%;
+}
+
+.ctaButtons.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ctaBtn {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1em 2.5em;
+  border-radius: 10em;
+  border: 1px solid var(--color-primary);
+  background: white;
+  color: var(--color-primary);
+  cursor: pointer;
+  box-shadow: 0 0 0 0 var(--color-primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 var(--color-primary);
+}
+
+.ctaBtn:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 var(--color-primary);
+}
+
+.ctaTexts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 700px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s 0.2s ease,
+    transform 0.7s 0.2s ease;
+}
+
+.ctaTexts.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ctaDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.9;
+  text-align: center;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.ctaItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: auto;
+  flex: 1;
+  max-width: 460px;
+}
+
+.ctaDescAnimated {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s 0.3s ease,
+    transform 0.7s 0.3s ease;
+}
+
+.ctaButtons.visible .ctaDescAnimated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════
+   4. MAPA
+══════════════════════════════════════ */
+.mapSection {
+  background: var(--color-primary);
+  padding: 8rem 6vw;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+  scroll-snap-align: end;
+}
+
+.mapSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mapInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mapBox {
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+.mapIcon {
+  font-size: 3rem;
+}
+.mapSoon {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+.mapTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.mapList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mapList li {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mapListIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
+.mapBtn {
+  display: inline-block;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 10em;
+  padding: clamp(0.7em, 1.5vw, 0.8em) clamp(1.5em, 3vw, 2em);
+  box-shadow: 0 0 0 0 #a2ff00;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.mapBtn:hover {
+  color: #a2ff00;
+  border-color: #a2ff00;
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #a2ff00;
+}
+
+.mapBtn:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 #a2ff00;
+}
+
+
+/* ══════════════════════════════════════
+   6. Workflow
+══════════════════════════════════════ */
+
+.workflowSection {
+  background: var(--color-bg-light);
+  padding: 8rem 6vw;
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.workflowSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.workflowSub {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: 0.5;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.workflowTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 500;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.workflowCards {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.workflowCard {
+  flex: 1;
+  max-width: 320px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.workflowCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(83, 61, 45, 0.12);
+}
+
+.workflowCardNum {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-accent);
+  opacity: 0.8;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.workflowCardIcon {
+  color: var(--color-primary);
+}
+
+.workflowCardTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.workflowCardText {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #999;
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════
+   7. KOST – button rotiran s kosti
+══════════════════════════════════════ */
+.boneSection {
+  background: var(--color-primary);
+  padding: clamp(4rem, 10vw, 12rem) 6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.boneWrapper {
+  position: relative;
+  max-width: min(900px, 85vw);
+  width: 100%;
+  opacity: 0;
+  transform: translateX(-120px) rotate(-12deg);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.34, 1.1, 0.64, 1);
+}
+
+.boneWrapper.visible {
+  opacity: 1;
+  transform: translateX(0) rotate(-10deg);
+}
+
+.boneWrapper:hover {
+  transform: translateX(0) rotate(-6deg) scale(1.03) !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1) !important;
+}
+
+.boneImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+  display: block;
+}
+
+/* Overlay i button ROTIRAJU zajedno s kostom jer su djeca .boneWrapper */
+.boneOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transform: rotate(-4deg);
+}
+
+.boneEngraved {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 3.2rem);
+  color: #7a6a56;
+  text-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.3),
+    -1px -1px 0 rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 0 12%;
+  letter-spacing: 1px;
+  transform: rotate(2deg);
+}
+
+.boneBtn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1.4vw, 1rem);
+  letter-spacing: 1px;
+  padding: 0.7em 1.7em;
+  border-radius: 0.5em;
+  border: 1px solid #d4c5b0;
+  background: #e3dac9;
+  color: #533d2d;
+  cursor: pointer;
+  transform: rotate(2deg);
+  box-shadow:
+    -6px -6px 12px #c5b99f,
+    -6px -6px 12px #f5efe3;
+  transition: all 0.3s;
+}
+
+.boneBtn:active {
+  color: #7a6a56;
+  box-shadow:
+    inset 4px 4px 12px #c5b99f,
+    inset -4px -4px 12px #f5efe3;
+}
+
+/* ══════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  .ctaTexts {
+    grid-template-columns: 1fr;
+  }
+  .mapSection {
+    grid-template-columns: 1fr;
+  }
+  .workflowSteps {
+    flex-direction: column;
+    align-items: center;
+  }
+  .workflowArrow {
+    transform: rotate(90deg);
+    margin: 0;
+  }
+}
+
+/*TABLET*/
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 5rem 3vw;
+    min-height: auto;
+  }
+  .ctaButtons {
+    gap: 3rem;
+  }
+  .ctaCard {
+    width: 100%;
+    padding: 1.5rem 1.2rem;
+    gap: 1.2rem;
+    border-radius: 18px;
+  }
+  .ctaBtn {
+    font-size: 1rem;
+    padding: 0.75em 1.8em;
+  }
+  .ctaDesc {
+    font-size: 0.78rem;
+  }
+
+  .mapSection {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 4rem 6vw;
+    min-height: auto;
+  }
+
+  .mapInfo {
+    order: -1;
+  }
+
+  .mapBox {
+    aspect-ratio: 16/9;
+  }
+
+  .mapTitle {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+
+  .mapList li {
+    font-size: 0.95rem;
+  }
+}
+
+
+/*MOBITEL*/
+@media (max-width: 480px) {
+  .ctaSection {
+    padding: 3rem 1.5rem;
+    min-height: auto;
+  }
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .ctaItem {
+    width: 100%;
+    max-width: 320px;
+  }
+  .ctaCard {
+    width: 100%;
+    padding: 1.2rem 1rem;
+    gap: 1rem;
+    border-radius: 14px;
+  }
+  .ctaCardImg {
+    aspect-ratio: 16/9;
+  }
+  .ctaBtn {
+    font-size: 0.95rem;
+    padding: 0.7em 1.6em;
+  }
+  .ctaDesc {
+    font-size: 0.75rem;
+    line-height: 1.7;
+    max-width: 100%;
+  }
+
+  .mapSection {
+    padding: 2rem 4vw;
+    gap: 1.5rem;
+  }
+
+  .mapBox {
+    aspect-ratio: 16/10;
+  }
+
+  .mapInfo {
+    align-items: center;
+    text-align: center;
+  }
+
+  .mapTitle {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .mapList {
+    margin-bottom: 1.5rem;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .mapList li {
+    font-size: 0.85rem;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .mapListIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mapBtn {
+    font-size: clamp(0.85rem, 3vw, 1.2rem);
+    padding: clamp(0.6em, 2vw, 0.75em) clamp(1.2em, 3vw, 1.5em);
+  }
+
+}
+
+/*MALI MOBITEL*/
+@media (max-width: 360px) {
+  .ctaCard {
+    padding: 1rem 0.8rem;
+  }
+  .ctaBtn {
+    font-size: 0.95rem;
+    padding: 0.7em 1.6em;
+  }
+  .ctaDesc {
+    font-size: 0.7rem;
+  }
+
+}

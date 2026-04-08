@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&family=Roboto+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #533D2D;
+  --color-accent: #A2FF00;
+  --color-bg-light: #E3DAC9;
+  --color-white: #FFFFFF;
+  --color-black: #111111;
+
+  --font-display: 'Spicy Rice', cursive;
+  --font-body: 'Roboto Mono', monospace;
+  --navbar-offset: 50px;
+}
+
+main, .page {
+  padding-top: 70px;
+  padding-top: var(--navbar-offset);
+  transition: padding-top 0.35s ease;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+}
+
+html {
+  scroll-snap-type: y proximity;
+}

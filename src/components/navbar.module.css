@@ -1,0 +1,161 @@
+/* Navbar.module.css */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 3rem;
+  background: #1C3320;
+  transition: transform 0.35s ease, color 0.3s ease;
+}
+
+/* Scroll animacija */
+.navVisible {
+  transform: translateY(0);
+}
+.navHidden {
+  transform: translateY(-110%);
+}
+
+/* Boje */
+.navDark { color: #fff; }
+.navLight { color: #533D2D; }
+
+.navDark .logo { color: #fff; }
+.navDark .textLink { color: rgba(255,255,255,0.85); }
+.navDark .walkersBtn { color: #fff; border-color: rgba(255,255,255,0.85); }
+.navDark .divider { background: rgba(255,255,255,0.2); }
+
+.navLight .logo { color: #533D2D; }
+.navLight .textLink { color: rgba(83,61,45,0.8); }
+.navLight .walkersBtn { color: #533D2D; border-color: rgba(83,61,45,0.7); }
+.navLight .divider { background: rgba(83,61,45,0.2); }
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.logo:hover { color: #A2FF00 !important; }
+
+/* Links desna strana */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.walkersBtn {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 10em;
+  padding: 0.55em 1.4em;
+  transition: all 0.3s ease-in-out;
+}
+.walkersBtn:hover {
+  color: #A2FF00 !important;
+  border-color: #A2FF00 !important;
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #A2FF00;
+}
+
+.textLink {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.textLink:hover { color: #A2FF00 !important; }
+
+.divider {
+  width: 1px;
+  height: 18px;
+}
+
+/* Mob */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5em 1.5rem;
+  }
+
+  .links {
+    gap: 1.2rem; /* ← manji razmak između linkova */
+  }
+
+  .textLink {
+    font-size: 0.75rem;
+  }
+
+  .walkersBtn {
+    font-size: 0.75rem;
+    padding: 0.4em 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+  
+  .logo svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .links {
+    gap: 0.8rem;
+  }
+  
+  .textLink {
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .walkersBtn {
+    font-size: 0.68rem;
+    padding: 0.35em 0.8em;
+  }
+}
+
+@media (max-width: 360px) {
+  
+  .navbar {
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .logo svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .links {
+    gap: 0.6rem;
+  }
+  
+  .textLink {
+    font-size: 0.62rem;
+  }
+  
+  .walkersBtn {
+    font-size: 0.62rem;
+    padding: 0.3em 0.7em;
+  }
+}

@@ -1,0 +1,851 @@
+/* ── Book.module.css ─────────────────────────────────────────────────────────── */
+
+/* Page shell */
+.page {
+  min-height: 100vh;
+  background: #E3DAC9;
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+  padding: 80px 0 80px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Left decorative green strip */
+.strip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: #A2FF00;
+  z-index: 10;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Page header ──────────────────────────────────────────────────────────── */
+.pageHeader {
+  margin-bottom: 32px;
+}
+
+.pageEyebrow {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #533D2D;
+  background: #A2FF00;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+.pageTitle {
+  font-family: 'Spicy Rice', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: #1C3320;
+  margin: 0;
+  line-height: 1;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 6px 6px 0 #111;
+  padding: 32px;
+  position: relative;
+}
+
+/* ── Step bar ─────────────────────────────────────────────────────────────── */
+.stepBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+  gap: 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: #fff;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.stepActive {
+  border-color: #533D2D;
+  background: #533D2D;
+  color: #A2FF00;
+}
+
+.stepDone {
+  border-color: #A2FF00;
+  background: #A2FF00;
+  color: #111;
+}
+
+.stepLabel {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  background: #e0e0e0;
+  margin: 0 8px;
+  transition: background 0.3s;
+}
+
+.stepLineDone {
+  background: #A2FF00;
+}
+
+/* ── Step content ─────────────────────────────────────────────────────────── */
+.stepContent {
+  min-height: 320px;
+}
+
+.stepTitle {
+  font-family: 'Spicy Rice', cursive;
+  font-size: 1.6rem;
+  color: #1C3320;
+  margin: 0 0 4px;
+}
+
+.stepSub {
+  font-size: 13px;
+  color: #777;
+  margin: 0 0 24px;
+}
+
+/* ── Walker cards ─────────────────────────────────────────────────────────── */
+.walkerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.walkerCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.walkerCard:hover:not(:disabled) {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+  border-color: #533D2D;
+}
+
+.walkerSelected {
+  border-color: #A2FF00 !important;
+  box-shadow: 2px 5px 0 0 #A2FF00 !important;
+  background: #f5ffe6 !important;
+}
+
+.walkerUnavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.walkerAvatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.walkerAvatar img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  display: block;
+}
+
+.onlineDot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #A2FF00;
+  border: 2px solid #fff;
+}
+
+.walkerInfo {
+  flex: 1;
+}
+
+.walkerName {
+  font-weight: 700;
+  font-size: 15px;
+  color: #1C3320;
+  margin-bottom: 4px;
+}
+
+.walkerMeta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.starIcon {
+  color: #f5a623;
+  fill: #f5a623;
+}
+
+.muted {
+  color: #aaa;
+}
+
+.walkerTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  background: #E3DAC9;
+  color: #533D2D;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+.walkerPrice {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.priceAmount {
+  font-family: 'Spicy Rice', cursive;
+  font-size: 1.3rem;
+  color: #533D2D;
+}
+
+.perHour {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.unavailableBadge {
+  display: block;
+  font-size: 10px;
+  color: #c0392b;
+  margin-top: 4px;
+}
+
+.selectedCheck {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  background: #A2FF00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+}
+
+/* ── Datetime step ────────────────────────────────────────────────────────── */
+.calLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #533D2D;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.calStrip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.calStrip::-webkit-scrollbar {
+  display: none;
+}
+
+.dayBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  min-width: 56px;
+}
+
+.dayBtn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+  border-color: #533D2D;
+}
+
+.daySelected {
+  border-color: #A2FF00 !important;
+  background: #A2FF00 !important;
+  box-shadow: 2px 5px 0 0 #111 !important;
+}
+
+.dayName {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.dayNum {
+  font-family: 'Spicy Rice', cursive;
+  font-size: 1.3rem;
+  color: #1C3320;
+  line-height: 1.1;
+}
+
+.dayMonth {
+  font-size: 10px;
+  color: #bbb;
+}
+
+.daySelected .dayName,
+.daySelected .dayNum,
+.daySelected .dayMonth {
+  color: #111;
+}
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.timeBtn {
+  padding: 10px 0;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+}
+
+.timeBtn:hover:not(:disabled) {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+  border-color: #533D2D;
+}
+
+.timeSelected {
+  border-color: #A2FF00 !important;
+  background: #A2FF00 !important;
+  box-shadow: 2px 5px 0 0 #111 !important;
+  font-weight: 700;
+}
+
+.timeUnavail {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.timeCross {
+  display: block;
+  font-size: 10px;
+  color: #e74c3c;
+}
+
+.durationRow {
+  display: flex;
+  gap: 10px;
+}
+
+.durBtn {
+  flex: 1;
+  padding: 12px 0;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.durBtn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+  border-color: #533D2D;
+}
+
+.durSelected {
+  border-color: #A2FF00 !important;
+  background: #A2FF00 !important;
+  box-shadow: 2px 5px 0 0 #111 !important;
+}
+
+/* ── Dog step ─────────────────────────────────────────────────────────────── */
+.dogList {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.dogCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s;
+  min-width: 160px;
+}
+
+.dogCard:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+  border-color: #533D2D;
+}
+
+.dogSelected {
+  border-color: #A2FF00 !important;
+  background: #f5ffe6 !important;
+  box-shadow: 2px 5px 0 0 #A2FF00 !important;
+}
+
+.dogEmoji {
+  font-size: 28px;
+}
+
+.dogName {
+  font-weight: 700;
+  color: #1C3320;
+  font-size: 14px;
+}
+
+.dogBreed {
+  font-size: 11px;
+  color: #999;
+}
+
+.dogCardAdd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border: 2px dashed #c0b8ad;
+  background: transparent;
+  cursor: pointer;
+  color: #999;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  transition: all 0.15s;
+  min-width: 140px;
+}
+
+.dogCardAdd:hover {
+  border-color: #533D2D;
+  color: #533D2D;
+}
+
+.plusIcon {
+  font-size: 22px;
+  line-height: 1;
+  color: #A2FF00;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #533D2D;
+  margin-bottom: 8px;
+}
+
+.textarea {
+  width: 100%;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  padding: 12px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+  color: #333;
+  transition: border-color 0.15s;
+}
+
+.textarea:focus {
+  border-color: #533D2D;
+}
+
+.recurringBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 14px 18px;
+  border: 2px solid #e0d6c8;
+  background: #faf7f3;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.recurringBtn:hover {
+  border-color: #533D2D;
+}
+
+.recurringActive {
+  border-color: #A2FF00 !important;
+  background: #f5ffe6 !important;
+  color: #1C3320 !important;
+}
+
+.toggle {
+  margin-left: auto;
+  width: 36px;
+  height: 20px;
+  background: #ddd;
+  border-radius: 10px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.recurringActive .toggle {
+  background: #A2FF00;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.recurringActive .toggleKnob {
+  transform: translateX(16px);
+}
+
+/* ── Summary / confirm step ───────────────────────────────────────────────── */
+.summary {
+  border: 2px solid #e0d6c8;
+  margin-bottom: 20px;
+}
+
+.summaryRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e0d6c8;
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+}
+
+.summaryIcon {
+  width: 32px;
+  height: 32px;
+  background: #E3DAC9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #533D2D;
+}
+
+.summaryBody {
+  flex: 1;
+}
+
+.summaryLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 2px;
+}
+
+.summaryValue {
+  font-size: 14px;
+  color: #1C3320;
+  font-weight: 600;
+}
+
+.notesBox {
+  padding: 12px 18px;
+  background: #faf7f3;
+  font-size: 13px;
+  color: #555;
+  border-top: 1px solid #e0d6c8;
+}
+
+.recurringBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: #A2FF00;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  border-top: 1px solid #e0d6c8;
+}
+
+.priceBox {
+  border: 2px solid #111;
+  padding: 16px 20px;
+  background: #1C3320;
+  margin-bottom: 20px;
+}
+
+.priceLine {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #b0c9a0;
+  padding: 4px 0;
+}
+
+.priceTotal {
+  font-size: 16px;
+  font-weight: 700;
+  color: #A2FF00 !important;
+  border-top: 1px solid #2d5a35;
+  margin-top: 8px;
+  padding-top: 10px !important;
+}
+
+.confirmBtn {
+  width: 100%;
+  padding: 16px;
+  background: #533D2D;
+  color: #A2FF00;
+  border: 2px solid #111;
+  font-family: 'Spicy Rice', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #111;
+}
+
+.confirmBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(162,255,0,0.3);
+  border-top-color: #A2FF00;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.payNote {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* ── Nav row ─────────────────────────────────────────────────────────────── */
+.navRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid #e0d6c8;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 2px solid #ccc;
+  padding: 10px 18px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.backBtn:hover {
+  border-color: #533D2D;
+  color: #533D2D;
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+}
+
+.nextBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #533D2D;
+  border: 2px solid #111;
+  padding: 12px 28px;
+  font-family: 'Spicy Rice', cursive;
+  font-size: 1rem;
+  color: #A2FF00;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.nextBtn:hover:not(:disabled) {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #111;
+}
+
+.nextBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Success screen ───────────────────────────────────────────────────────── */
+.successWrap {
+  text-align: center;
+  padding: 48px 32px;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.successPaw {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.successTitle {
+  font-family: 'Spicy Rice', cursive;
+  font-size: 2.2rem;
+  color: #1C3320;
+  margin: 0 0 12px;
+}
+
+.successSub {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .timeGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stepLabel {
+    display: none;
+  }
+
+  .durationRow {
+    flex-direction: column;
+  }
+
+  .dogList {
+    flex-direction: column;
+  }
+
+  .dogCard,
+  .dogCardAdd {
+    min-width: unset;
+    width: 100%;
+  }
+}

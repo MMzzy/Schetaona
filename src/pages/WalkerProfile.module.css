@@ -1,0 +1,553 @@
+.page {
+  min-height: 100vh;
+  background: #1C3320;
+  display: flex;
+  flex-direction: column;
+}
+
+.outer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 2rem 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+/* SHARED CARD */
+.card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+}
+
+.cardTitle {
+  font-family: 'Spicy Rice', cursive;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #533D2D;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+/* HERO */
+.heroCard {
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem;
+}
+
+.heroInner {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.heroImgWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.heroImg {
+  width: clamp(120px, 16vw, 200px);
+  height: clamp(120px, 16vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #E3DAC9;
+  display: block;
+}
+
+.onlineBadge {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fff;
+  border-radius: 50px;
+  padding: 0.25rem 0.7rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #533D2D;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #E3DAC9;
+}
+
+.onlineDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #A2FF00;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+
+.heroInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroName {
+  font-family: 'Spicy Rice', cursive;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #533D2D;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+  font-weight: 400;
+}
+
+.heroLocation {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  color: rgba(83,61,45,0.55);
+  margin-bottom: 0.6rem;
+}
+
+.heroRating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.ratingNum {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #533D2D;
+}
+
+.ratingDot { color: rgba(83,61,45,0.3); }
+
+.ratingReviews {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  color: rgba(83,61,45,0.5);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.statNum {
+  font-family: 'Roboto Mono', cursive;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: #533D2D;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(83,61,45,0.4);
+}
+
+/* BOOK BUTTON */
+.bookBtn {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.9em 2.5em;
+  border-radius: 10em;
+  border: 1px solid #533D2D;
+  background: #fff;
+  color: #533D2D;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 #533D2D;
+  transition: all 0.3s ease-in-out;
+}
+
+.bookBtn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+}
+
+.bookBtn:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 #533D2D;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 2rem;
+}
+
+/* ABOUT */
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(83,61,45,0.65);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+}
+
+.certs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.certItem {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(83,61,45,0.75);
+}
+
+.certIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #A2FF00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* REVIEWS */
+.reviewsList { display: flex; flex-direction: column; }
+
+.review { padding: 1.2rem 0; }
+
+.reviewBorder { border-bottom: 1px solid rgba(83,61,45,0.08); }
+
+.reviewHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.reviewAuthor {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #533D2D;
+  margin-bottom: 0.25rem;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(83,61,45,0.55);
+}
+
+.reviewDate {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(83,61,45,0.35);
+}
+
+.reviewText {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  color: rgba(83,61,45,0.6);
+  line-height: 1.8;
+}
+
+.allReviewsBtn {
+  width: 100%;
+  margin-top: 1.2rem;
+  padding: 0.9rem;
+  border-radius: 50px;
+  border: 1.5px solid rgba(83,61,45,0.18);
+  background: transparent;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #533D2D;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.allReviewsBtn:hover {
+  border-color: #533D2D;
+  background: rgba(83,61,45,0.04);
+}
+
+/* SERVICES */
+.services { display: flex; flex-direction: column; }
+
+.service { padding: 0; }
+
+.serviceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.15rem;
+}
+
+.serviceName {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  color: #533D2D;
+}
+
+.servicePrice {
+  font-family: 'Roboto Mono', cursive;
+  font-size: 1.2rem;
+  color: #533D2D;
+  font-weight: 400;
+}
+
+.serviceDuration {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(83,61,45,0.38);
+  margin-bottom: 0.6rem;
+}
+
+.serviceDivider {
+  height: 1px;
+  background: rgba(83,61,45,0.08);
+  margin: 0.3rem 0 0.8rem;
+}
+
+.servicesNote {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(83,61,45,0.38);
+  margin-top: 0.8rem;
+  line-height: 1.6;
+}
+
+/* AVAILABILITY */
+.availability {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.availItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.availDay {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  color: #533D2D;
+}
+
+.availTime {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(83,61,45,0.45);
+}
+
+.availNote {
+  background: #A2FF00;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: #1C3320;
+  line-height: 1.6;
+}
+
+/* BOTTOM CTA */
+.bottomCta {
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;  
+}
+
+.bottomCtaTitle {
+  font-family: 'Spicy Rice', cursive;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: #533D2D;
+  font-weight: 400;
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  white-space: nowrap;
+  gap: 0.15em;
+  flex-wrap: wrap;
+  line-height: 1.2;
+  width: 100%;
+}
+
+/* Wrapper fiksne širine — dovoljno za najduži tekst "sljedeći tjedan?" */
+.ctaAnimWrap {
+  position: relative;
+  display: inline-block;
+  min-width: 13ch;
+  height: 1.2em;
+  overflow: visible;
+  clip-path: inset(0 0 -0.3em 0);
+  vertical-align: baseline;  
+}
+
+.ctaWord {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding-top: 0.6em;
+  white-space: nowrap;
+  font-family: 'Spicy Rice', cursive;
+  font-size: inherit;
+  font-weight: 400;
+  color: #533D2D;  
+}
+
+.ctaWordEnter {
+  animation: ctaIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ctaWordExit {
+  animation: ctaOut 0.32s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes ctaIn {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes ctaOut {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.bottomCtaText {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(83,61,45,0.55);
+  margin: 0;
+}
+
+.bottomCtaBtn {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.7em 2em;
+  border-radius: 10em;
+  border: 1px solid #533D2D;
+  background: #fff;
+  color: #533D2D;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 0 0 #533D2D;
+  transition: all 0.3s ease-in-out;
+}
+
+.bottomCtaBtn:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 #533D2D;
+}
+
+.bottomCtaBtn:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 #533D2D;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .rightCol { position: relative; top: 0; }
+  .stats { grid-template-columns: repeat(2, auto); }
+  .certs { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .heroInner { flex-direction: column; align-items: center; text-align: center; }
+  .heroLocation, .heroRating { justify-content: center; }
+  .stats { justify-content: center; gap: 1.5rem; }
+  .card, .heroCard { padding: 1.8rem; }
+
+  .bottomCtaTitle {
+    justify-content: center;
+    white-space: normal;
+    flex-wrap: wrap;
+    gap: 0;
+    line-height: 1;
+  }
+
+  .ctaAnimWrap {
+    min-width: unset;        /* ← makni fiksnu širinu */
+    width: 100%;             /* ← zauzmi cijeli red */
+    height: 1em;
+    text-align: center;      /* ← centriraj tekst unutar */
+  }
+
+  .ctaWord {
+    justify-content: center; /* ← centriraj apsolutno pozicioniranu riječ */
+  }
+}
