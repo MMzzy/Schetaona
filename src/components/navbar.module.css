@@ -44,7 +44,7 @@
   transition: color 0.2s;
   flex-shrink: 0;
 }
-.logo:hover { color: #A2FF00 !important; }
+.logo:hover { color: var(--color-accent) !important; }
 
 /* Links desna strana */
 .links {
@@ -68,10 +68,10 @@
   transition: all 0.3s ease-in-out;
 }
 .walkersBtn:hover {
-  color: #A2FF00 !important;
-  border-color: #A2FF00 !important;
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
   transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 #A2FF00;
+  box-shadow: 2px 5px 0 0 var(--color-accent);
 }
 
 .textLink {
@@ -82,7 +82,7 @@
   text-decoration: none;
   transition: color 0.2s;
 }
-.textLink:hover { color: #A2FF00 !important; }
+.textLink:hover { color: var(--color-accent) !important; }
 
 .divider {
   width: 1px;
@@ -92,11 +92,11 @@
 /* Mob */
 @media (max-width: 768px) {
   .navbar {
-    padding: 0.5em 1.5rem;
+    padding: 0.9rem 1.5rem;
   }
 
   .links {
-    gap: 1.2rem; /* ← manji razmak između linkova */
+    gap: 1.2rem;
   }
 
   .textLink {
@@ -110,25 +110,25 @@
 }
 
 @media (max-width: 480px) {
-  
+
   .navbar {
-    padding: 0.4rem 1rem;
+    padding: 0.8rem 1rem;
   }
-  
+
   .logo svg {
     width: 22px;
     height: 22px;
   }
-  
+
   .links {
     gap: 0.8rem;
   }
-  
+
   .textLink {
     font-size: 0.68rem;
     letter-spacing: 0.5px;
   }
-  
+
   .walkersBtn {
     font-size: 0.68rem;
     padding: 0.35em 0.8em;
@@ -136,24 +136,24 @@
 }
 
 @media (max-width: 360px) {
-  
+
   .navbar {
-    padding: 0.4rem 0.8rem;
+    padding: 0.75rem 0.8rem;
   }
-  
+
   .logo svg {
     width: 20px;
     height: 20px;
   }
-  
+
   .links {
     gap: 0.6rem;
   }
-  
+
   .textLink {
     font-size: 0.62rem;
   }
-  
+
   .walkersBtn {
     font-size: 0.62rem;
     padding: 0.3em 0.7em;

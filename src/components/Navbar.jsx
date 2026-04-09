@@ -11,8 +11,8 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.setProperty(
-      '--navbar-offset', 
-      visible ? '50px' : '0px'  // 52px = visina tvog navbara
+      '--navbar-offset',
+      visible ? '50px' : '0px'
     )
   }, [visible])
 
@@ -20,7 +20,6 @@ export default function Navbar() {
     const onScroll = () => {
       const currentY = window.scrollY
 
-      // Sakrij kad scrollaš dolje, prikaži kad scrollaš gore
       if (currentY > lastY && currentY > 80) {
         setVisible(false)
       } else {

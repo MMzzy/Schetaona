@@ -38,7 +38,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-size: clamp(5rem, 14vw, 13rem);
-  color: var(--color-white);
+  color: var(--color-accent);
   line-height: 1;
   letter-spacing: -3px;
   margin: 0;
@@ -233,12 +233,11 @@
    4. MAPA
 ══════════════════════════════════════ */
 .mapSection {
-  background: var(--color-primary);
+  background: var(--color-secondary);
   padding: 8rem 6vw;
   min-height: 100dvh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
   opacity: 0;
   transform: translateY(60px);
@@ -253,18 +252,33 @@
   transform: translateY(0);
 }
 
-.mapInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.mapInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  padding: 3rem 4rem;
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 6px 8px 0 0 var(--color-accent);
 }
 
 .mapBox {
   aspect-ratio: 4/3;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mapInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .mapPlaceholder {
@@ -336,23 +350,22 @@
   border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 10em;
   padding: clamp(0.7em, 1.5vw, 0.8em) clamp(1.5em, 3vw, 2em);
-  box-shadow: 0 0 0 0 #a2ff00;
+  box-shadow: 0 0 0 0 var(--color-accent);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 
 .mapBtn:hover {
-  color: #a2ff00;
-  border-color: #a2ff00;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
   transform: translateY(-4px) translateX(-2px);
-  box-shadow: 2px 5px 0 0 #a2ff00;
+  box-shadow: 2px 5px 0 0 var(--color-accent);
 }
 
 .mapBtn:active {
   transform: translateY(2px) translateX(1px);
-  box-shadow: 0 0 0 0 #a2ff00;
+  box-shadow: 0 0 0 0 var(--color-accent);
 }
-
 
 /* ══════════════════════════════════════
    6. Workflow
@@ -375,10 +388,10 @@
 
 .workflowSub {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: var(--color-white);
   opacity: 0.5;
   text-align: center;
   margin-bottom: 1rem;
@@ -388,7 +401,7 @@
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-white);
   text-align: center;
   margin-bottom: 5rem;
   max-width: 700px;
@@ -428,7 +441,7 @@
 .workflowCardNum {
   font-family: var(--font-display);
   font-size: 3rem;
-  color: var(--color-accent);
+  color: var(--color-white);
   opacity: 0.8;
   letter-spacing: 3px;
   text-align: center;
@@ -458,7 +471,7 @@
    7. KOST – button rotiran s kosti
 ══════════════════════════════════════ */
 .boneSection {
-  background: var(--color-primary);
+  background: var(--color-secondary);
   padding: clamp(4rem, 10vw, 12rem) 6vw;
   display: flex;
   justify-content: center;
@@ -613,17 +626,14 @@
     font-size: 0.78rem;
   }
 
-  .mapSection {
+  .mapInner {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 4rem 6vw;
-    min-height: auto;
+    padding: 2rem;
   }
-
   .mapInfo {
     order: -1;
   }
-
   .mapBox {
     aspect-ratio: 16/9;
   }
@@ -635,45 +645,90 @@
   .mapList li {
     font-size: 0.95rem;
   }
-}
 
+  .workflowSection {
+    padding: 5rem 4vw;
+  }
+
+  .workflowCards {
+    gap: 1rem;
+  }
+
+  .workflowCard {
+    padding: 1.8rem 1.2rem 1.5rem;
+    gap: 0.8rem;
+  }
+
+  .workflowCardNum {
+    font-size: 2.2rem;
+  }
+
+  .workflowCardTitle {
+    font-size: 1.5rem;
+  }
+
+  .workflowCardText {
+    font-size: 0.78rem;
+  }
+
+  .boneSection {
+    padding: clamp(2rem, 7vw, 8rem) 6vw;
+  }
+
+  .boneWrapper {
+    max-width: min(900px, 90vw);
+  }
+
+  .boneEngraved {
+    font-size: clamp(1rem, 4.5vw, 2.2rem);
+  }
+
+  .boneBtn {
+    font-size: clamp(0.55rem, 1.8vw, 0.9rem);
+    padding: 0.6em 1.5em;
+  }
+}
 
 /*MOBITEL*/
 @media (max-width: 480px) {
-  .ctaSection {
-    padding: 3rem 1.5rem;
-    min-height: auto;
-  }
-  .ctaButtons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  .ctaItem {
-    width: 100%;
-    max-width: 320px;
-  }
-  .ctaCard {
-    width: 100%;
-    padding: 1.2rem 1rem;
-    gap: 1rem;
-    border-radius: 14px;
-  }
-  .ctaCardImg {
-    aspect-ratio: 16/9;
-  }
-  .ctaBtn {
-    font-size: 0.95rem;
-    padding: 0.7em 1.6em;
-  }
-  .ctaDesc {
-    font-size: 0.75rem;
-    line-height: 1.7;
-    max-width: 100%;
-  }
+    .ctaSection {
+      padding: 2rem 1.2rem;
+      min-height: 100dvh;
+      justify-content: center;
+    }
+    .ctaButtons {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .ctaItem {
+      width: 100%;
+      max-width: 340px;
+    }
+    .ctaCard {
+      padding: 0.9rem;
+      gap: 0.7rem;
+      border-radius: 14px;
+    }
+    .ctaCardImg {
+      aspect-ratio: 16/6;
+    }
+    .ctaBtn {
+      font-size: 0.85rem;
+      padding: 0.55em 1.4em;
+    }
+    .ctaDesc {
+      font-size: 0.72rem;
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
 
   .mapSection {
     padding: 2rem 4vw;
+  }
+  .mapInner {
+    padding: 1.5rem;
     gap: 1.5rem;
   }
 
@@ -713,19 +768,84 @@
     padding: clamp(0.6em, 2vw, 0.75em) clamp(1.2em, 3vw, 1.5em);
   }
 
+  .workflowSection {
+    padding: 4rem 4vw;
+  }
+
+  .workflowSub {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+
+  .workflowTitle {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .workflowCards {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .workflowCard {
+    max-width: 100%;
+    width: 100%;
+    padding: 1.2rem 1.2rem 1rem;
+    gap: 0.6rem;
+    border-radius: 16px;
+  }
+
+  .workflowCardNum {
+    font-size: 1.8rem;
+  }
+
+  .workflowCardIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .workflowCardTitle {
+    font-size: 1.3rem;
+  }
+
+  .workflowCardText {
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+  
+  .boneSection {
+    padding: clamp(1.5rem, 5vw, 3rem) 4vw;
+  }
+
+  .boneWrapper {
+    max-width: 92vw;
+  }
+
+  .boneEngraved {
+    font-size: clamp(0.8rem, 4.5vw, 1.5rem);
+  }
+
+  .boneBtn {
+    font-size: clamp(0.45rem, 2vw, 0.75rem);
+    padding: 0.5em 1.2em;
+  }
 }
 
 /*MALI MOBITEL*/
 @media (max-width: 360px) {
-  .ctaCard {
-    padding: 1rem 0.8rem;
-  }
-  .ctaBtn {
-    font-size: 0.95rem;
-    padding: 0.7em 1.6em;
-  }
-  .ctaDesc {
-    font-size: 0.7rem;
-  }
-
+    .ctaCard {
+      padding: 0.75rem;
+      gap: 0.5rem;
+    }
+    .ctaCardImg {
+      aspect-ratio: 16/5;
+    }
+    .ctaBtn {
+      font-size: 0.8rem;
+      padding: 0.5em 1.2em;
+    }
+    .ctaDesc {
+      font-size: 0.68rem;
+    }
 }

@@ -6,6 +6,8 @@
   grid-template-columns: 1.5fr 1fr 1.5fr;
   gap: 4rem;
   align-items: start;
+  border: none;
+  outline: none;
 }
 
 /* ── LIJEVO ── */
@@ -31,7 +33,7 @@
 }
 
 .bigLinks a:hover {
-  color: #A2FF00;
+  color: var(--color-accent);
 }
 
 .copy {
@@ -63,7 +65,7 @@
 }
 
 .middle a:hover {
-  color: #A2FF00;
+  color: var(--color-accent);
 }
 
 /* ── DESNO ── */
@@ -115,7 +117,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 0.8rem 1.4rem;
-  background: #A2FF00;
+  background: var(--color-accent);
   color: #111;
   border: none;
   border-radius: 0 4px 4px 0;
@@ -125,7 +127,7 @@
 }
 
 .subscribeBtn:hover {
-  background: #8ee600;
+  background: var(--color-accent);
 }
 
 .social {
@@ -153,15 +155,57 @@
 }
 
 .social a:hover {
-  color: #A2FF00;
+  color: var(--color-accent);
 }
 
 
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .footer {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 4rem 4vw 3rem;
+  }
+
+  .left {
+    grid-column: 1 / -1;
+  }
+
+  .copy {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
   .footer {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
+    padding: 3rem 6vw 2.5rem;
+  }
+
+  .left {
+    grid-column: auto;
+  }
+
+  .bigLinks a {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .newsletterForm {
+    flex-direction: column;
+  }
+
+  .input {
+    border-right: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .subscribeBtn {
+    border-radius: 0 0 4px 4px;
+  }
+
+  .copy {
+    grid-column: auto;
   }
 }

@@ -43,7 +43,8 @@ export default function Walkers() {
   const pageRef = useRef(null)
 
   useEffect(() => {
-    if (pageRef.current) pageRef.current.scrollTop = 0
+    window.scrollTo(0, 0)
+    if (pageRef.current) pageRef.current.scrollTop = 0;
   }, [])
 
   const filtered = walkersData

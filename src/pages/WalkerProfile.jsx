@@ -133,6 +133,10 @@ export default function WalkerProfile() {
   const [ctaAnim, setCtaAnim] = useState('enter')
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCtaAnim('exit')
       setTimeout(() => {

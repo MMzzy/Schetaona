@@ -10,14 +10,22 @@ import DashboardOwner from './pages/DashboardOwner'
 import DashboardWalker from './pages/DashboardWalker'
 import RegisterOwner from './pages/RegisterOwner'
 import RegisterWalker from './pages/RegisterWalker'
+import Contact from './pages/Contact'
 import { LanguageProvider } from './context/LanguageContext'
 import './App.css'
 
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -29,6 +37,7 @@ function App() {
           <Route path="/book" element={<Book />} />
           <Route path="/dashboard/owner" element={<DashboardOwner />} />
           <Route path="/dashboard/walker" element={<DashboardWalker />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

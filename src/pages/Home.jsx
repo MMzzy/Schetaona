@@ -139,55 +139,57 @@ export default function Home() {
 
       {/* 4. MAPA */}
       <section ref={mapSectionRef} className={styles.mapSection}>
-        <div className={styles.mapBox}>
-          <MapContainer
-            center={[45.815, 15.982]}
-            zoom={13}
-            style={{ width: '100%', height: '100%' }}
-            zoomControl={false}
-          >
-            <TileLayer
-              url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-            />
-            <Marker position={[45.815, 15.982]} icon={makeIcon()}>
-              <Popup>Ana Kovač – Maksimir ⭐ 4.9</Popup>
-            </Marker>
-            <Marker position={[45.804, 15.971]} icon={makeIcon()}>
-              <Popup>Marko Perić – Trnje ⭐ 4.7</Popup>
-            </Marker>
-            <Marker position={[45.822, 15.962]} icon={makeIcon()}>
-              <Popup>Petra Horvat – Črnomerec ⭐ 4.8</Popup>
-            </Marker>
-          </MapContainer>
-        </div>
-        <div className={styles.mapInfo}>
-          <h2 className={styles.mapTitle}>Pronađi šetača<br />u svojoj blizini</h2>
-          <ul className={styles.mapList}>
-            <li>
-              <img src="/icons/location.png" alt="" className={styles.mapListIcon} />
-              Vidi šetače na mapi u realnom vremenu
-            </li>
-            <li>
-              <img src="/icons/filter.png" alt="" className={styles.mapListIcon} />
-              Filtriraj po udaljenosti – 1, 3 ili 5 km
-            </li>
-            <li>
-              <img src="/icons/check.png" alt="" className={styles.mapListIcon} />
-              Vidi tko je online i odmah dostupan
-            </li>
-            <li>
-              <img src="/icons/review.png" alt="" className={styles.mapListIcon} />
-              Sortiraj po ocjenama i recenzijama
-            </li>
-            <li>
-              <img src="/icons/paw.png" alt="" className={styles.mapListIcon} />
-              Pronađi šetača koji odgovara tvom psu
-            </li>
-          </ul>
-          <button className={styles.mapBtn} onClick={() => navigate('/walkers')}>
-            Pretraži šetače →
-          </button>
+        <div className={styles.mapInner}>
+          <div className={styles.mapBox}>
+            <MapContainer
+              center={[45.815, 15.982]}
+              zoom={13}
+              style={{ width: '100%', height: '100%' }}
+              zoomControl={false}
+            >
+              <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+              />
+              <Marker position={[45.815, 15.982]} icon={makeIcon()}>
+                <Popup>Ana Kovač – Maksimir ⭐ 4.9</Popup>
+              </Marker>
+              <Marker position={[45.804, 15.971]} icon={makeIcon()}>
+                <Popup>Marko Perić – Trnje ⭐ 4.7</Popup>
+              </Marker>
+              <Marker position={[45.822, 15.962]} icon={makeIcon()}>
+                <Popup>Petra Horvat – Črnomerec ⭐ 4.8</Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+          <div className={styles.mapInfo}>
+            <h2 className={styles.mapTitle}>Pronađi šetača<br />u svojoj blizini</h2>
+            <ul className={styles.mapList}>
+              <li>
+                <img src="/icons/location.png" alt="" className={styles.mapListIcon} />
+                Vidi šetače na mapi u realnom vremenu
+              </li>
+              <li>
+                <img src="/icons/filter.png" alt="" className={styles.mapListIcon} />
+                Filtriraj po udaljenosti – 1, 3 ili 5 km
+              </li>
+              <li>
+                <img src="/icons/check.png" alt="" className={styles.mapListIcon} />
+                Vidi tko je online i odmah dostupan
+              </li>
+              <li>
+                <img src="/icons/review.png" alt="" className={styles.mapListIcon} />
+                Sortiraj po ocjenama i recenzijama
+              </li>
+              <li>
+                <img src="/icons/paw.png" alt="" className={styles.mapListIcon} />
+                Pronađi šetača koji odgovara tvom psu
+              </li>
+            </ul>
+            <button className={styles.mapBtn} onClick={() => navigate('/walkers')}>
+              Pretraži šetače →
+            </button>
+          </div>
         </div>
       </section>
 

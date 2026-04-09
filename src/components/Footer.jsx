@@ -34,8 +34,8 @@ export default function Footer() {
         </div>
         <div className={styles.social}>
           <span>Prati nas:</span>
-          <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-          <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
+          <a href="https://www.instagram.com/setaona?igsh=MWNieXU2azk0dmEwZQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
+          <a href="https://www.facebook.com/share/18UTWutK1d/?mibextid=LQQJ4d" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={20} /></a>
           <a href="#" aria-label="TikTok"><SiTiktok size={20} /></a>
         </div>
       </div>
