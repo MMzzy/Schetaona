@@ -1,48 +1,83 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import styles from './Login.module.css'
 
 function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
+
+  const handleSignIn = () => {
+    console.log('Sign in:', { email, password, rememberMe })
+  }
+
   return (
     <div>
       <Navbar />
 
-      <main className="login-page">
-        <div className="login-box">
-          <h2>Prijava</h2>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginWrapper}>
 
-          {/* Login forma */}
-          <div className="login-form">
-            <label>Email</label>
-            <input type="email" placeholder="Upiši email" />
-
-            <label>Lozinka</label>
-            <input type="password" placeholder="Upiši lozinku" />
-
-            <button className="login-submit">Prijavi se</button>
+          <div className={styles.loginImage}>
+            <div className={styles.loginImagePlaceholder}>
+              theschetaona
+            </div>
           </div>
 
-          {/* Odvojač */}
-          <div className="login-divider">
-            <span>ili</span>
-          </div>
+          <div className={styles.loginForm}>
+            <div className={styles.formHeader}>
+              <h1>Login</h1>
+            </div>
 
-          {/* Social login */}
-          <div className="social-login">
-            <button className="google-btn">
-              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" />
-              Nastavi s Googleom
+            <div className={styles.formGroup}>
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="mark.johnson@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.formInput}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <div className={styles.labelRow}>
+                <label>Password</label>
+                <a href="#" className={styles.forgotLink}>Forgot?</a>
+              </div>
+              <input
+                type="password"
+                placeholder="••••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.formInput}
+              />
+            </div>
+
+            <div className={styles.rememberMe}>
+              <input
+                type="checkbox"
+                id="remember"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <label htmlFor="remember">Remember me</label>
+            </div>
+
+            <button onClick={handleSignIn} className={styles.signInBtn}>
+              SIGN IN
             </button>
-            <button className="apple-btn">
-              <img src="https://www.svgrepo.com/show/452222/apple.svg" alt="Apple" />
-              Nastavi s Appleom
-            </button>
+
+            <div className={styles.createAccount}>
+              <Link to="/register" className={styles.createAccountBtn}>
+                Create an account
+              </Link>
+            </div>
           </div>
 
-          <p className="login-register">Nemaš račun? <a href="/register">Registriraj se</a></p>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
   )
 }
