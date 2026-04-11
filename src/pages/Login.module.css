@@ -191,7 +191,7 @@
 
 @media (max-width: 768px) {
   .loginContainer {
-    padding: 2rem 1.5rem;
+    padding: calc(var(--navbar-offset) + 2rem) 1.5rem 2rem;
   }
 
   .loginWrapper {

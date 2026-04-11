@@ -1,6 +1,5 @@
 .page {
   overflow-x: clip;
-  scroll-snap-type: y proximity;
 }
 
 /* ══════════════════════════════════════
@@ -96,7 +95,6 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  scroll-snap-align: end;
 }
 
 .ctaCard {
@@ -244,7 +242,6 @@
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
-  scroll-snap-align: end;
 }
 
 .mapSection.visible {
@@ -586,6 +583,17 @@
 /* ══════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════ */
+@media (min-width: 1025px) {
+  .mapSection {
+    padding-top: 14rem;
+    padding-bottom: 14rem;
+  }
+  .workflowSection {
+    padding-top: 14rem;
+    padding-bottom: 14rem;
+  }
+}
+
 @media (max-width: 900px) {
   .ctaTexts {
     grid-template-columns: 1fr;
