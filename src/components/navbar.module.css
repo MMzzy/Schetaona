@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.1rem 3rem;
+  padding: 0.6rem 3rem;
   background: #1C3320;
   transition: transform 0.35s ease, color 0.3s ease;
 }
@@ -175,7 +175,7 @@
 .menuTopRow {
   display: flex;
   align-items: center;
-  padding: 1.1rem 3rem;
+  padding: 0.6rem 3rem;
   flex-shrink: 0;
 }
 

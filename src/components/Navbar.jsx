@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { PawPrint, X } from 'lucide-react'
 import styles from './Navbar.module.css'
 
-export default function Navbar() {
+export default function Navbar({ loggedIn = false, role = null, alwaysVisible = false }) {
   const [visible, setVisible] = useState(true)
   const [dark, setDark] = useState(true)
   const [lastY, setLastY] = useState(0)
@@ -14,11 +14,12 @@ export default function Navbar() {
   useEffect(() => {
     document.body.style.setProperty(
       '--navbar-offset',
-      visible ? '68px' : '0px'
+      visible ? '52px' : '0px'
     )
   }, [visible])
 
   useEffect(() => {
+    if (alwaysVisible) return
     const onScroll = () => {
       const currentY = window.scrollY
       if (currentY > lastY && currentY > 80) {
@@ -30,7 +31,7 @@ export default function Navbar() {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [lastY])
+  }, [lastY, alwaysVisible])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -60,10 +61,18 @@ export default function Navbar() {
         </Link>
 
         <div className={styles.links}>
-          <Link to="/walkers" className={styles.walkersBtn}>Šetači</Link>
+          {(!loggedIn || role === 'owner') && (
+            <Link to="/walkers" className={styles.walkersBtn}>Šetači</Link>
+          )}
           <div className={styles.divider} />
-          <Link to="/login" className={styles.textLink}>Prijava</Link>
-          <Link to="/register" className={styles.textLink}>Registracija</Link>
+          {loggedIn ? (
+            <Link to="/login" className={styles.textLink}>Odjava</Link>
+          ) : (
+            <>
+              <Link to="/login" className={styles.textLink}>Prijava</Link>
+              <Link to="/register" className={styles.textLink}>Registracija</Link>
+            </>
+          )}
         </div>
       </nav>
 
@@ -80,10 +89,20 @@ export default function Navbar() {
           <div className={styles.menuContent}>
             <div className={styles.menuMain}>
               <Link to="/" onClick={() => { closeMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>HOME</Link>
-              <Link to="/walkers" onClick={closeMenu}>ŠETAČI</Link>
-              <Link to="/contact" onClick={closeMenu}>KONTAKT</Link>
-              <Link to="/login" onClick={closeMenu}>PRIJAVA</Link>
-              <Link to="/register" onClick={closeMenu}>REGISTRACIJA</Link>
+              {loggedIn ? (
+                <>
+                  <Link to="/contact" onClick={closeMenu}>KONTAKT</Link>
+                  <Link to={role === 'walker' ? '/dashboard/walker' : '/dashboard/owner'} onClick={closeMenu}>PROFIL</Link>
+                  <Link to="/login" onClick={closeMenu}>ODJAVA</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/walkers" onClick={closeMenu}>ŠETAČI</Link>
+                  <Link to="/contact" onClick={closeMenu}>KONTAKT</Link>
+                  <Link to="/login" onClick={closeMenu}>PRIJAVA</Link>
+                  <Link to="/register" onClick={closeMenu}>REGISTRACIJA</Link>
+                </>
+              )}
             </div>
           </div>
         </div>

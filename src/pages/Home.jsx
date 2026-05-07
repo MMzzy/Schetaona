@@ -125,8 +125,7 @@ export default function Home() {
         { y: ctaTop + cta.offsetHeight,  pinned: true  }, // 2 Balls entry
         { y: mapTop,                     pinned: false }, // 3 Map
         { y: mapTop + map.offsetHeight,  pinned: true  }, // 4 Walkers entry
-        { y: wfTop,                      pinned: false }, // 5 Workflow
-        { y: absTop(bon),                pinned: false }, // 6 Bone
+        { y: absTop(bon),                pinned: false }, // 5 Bone
       ]
     }
 

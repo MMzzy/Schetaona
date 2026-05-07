@@ -96,7 +96,7 @@ export default function BallsSection() {
   const getP = (start, end) =>
     Math.min(1, Math.max(0, (scrollVal - start) / (end - start)));
 
-  const titleP = easeOut(getP(0.0, 0.15));
+  const titleP = easeOut(getP(0.0, 0.08));
   const deskBalls = [
     easeOut(getP(0.15, 0.45)),
     easeOut(getP(0.4, 0.65)),
