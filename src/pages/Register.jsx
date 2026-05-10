@@ -1,10 +1,54 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import styles from './Register.module.css'
+import { supabase } from '../lib/supabaseClient'
+import { useAuth } from '../context/AuthContext'
+
+const DAY_MAP = {
+  'Pon': 'mon', 'Uto': 'tue', 'Sri': 'wed',
+  'Čet': 'thu', 'Pet': 'fri', 'Sub': 'sat', 'Ned': 'sun',
+}
 
 function Register() {
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const { user, profile, loading: authLoading } = useAuth()
   const [role, setRole] = useState(null)
   const [step, setStep] = useState(0)
+
+  // Read role from URL (e.g. /register?role=owner)
+  useEffect(() => {
+    const roleParam = searchParams.get('role')
+    if (roleParam === 'owner' || roleParam === 'walker') {
+      setRole(roleParam)
+    }
+  }, [])
+
+  // After OAuth redirect: user is logged in but has no profile yet → create it and redirect
+  useEffect(() => {
+    if (authLoading || !user || !role || profile) return
+    const isOAuth = user.app_metadata?.provider !== 'email'
+    if (!isOAuth) return
+
+    async function finishOAuthProfile() {
+      setLoading(true)
+      const { error } = await supabase.from('profiles').insert({
+        id: user.id,
+        full_name: user.user_metadata?.full_name ?? user.user_metadata?.name ?? '',
+        email: user.email,
+        role,
+        city: '',
+        phone: '',
+      })
+      setLoading(false)
+      if (error) { setError(error.message); return }
+      navigate(role === 'walker' ? '/dashboard/walker' : '/dashboard/owner')
+    }
+    finishOAuthProfile()
+  }, [authLoading, user, role, profile])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -30,7 +74,7 @@ function Register() {
     specialNotes: '',
   })
 
-  const maxSteps = role === 'walker' ? 4 : 4
+  const maxSteps = 4
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }))
@@ -53,8 +97,111 @@ function Register() {
     if (step > 0) setStep(step - 1)
   }
 
-  const handleRegister = () => {
-    console.log('Register:', formData, role)
+  const handleOAuth = async (provider) => {
+    setError(null)
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/register?role=${role}`,
+      },
+    })
+    if (error) setError(error.message)
+  }
+
+  const handleRegister = async () => {
+    setError(null)
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Lozinke se ne podudaraju')
+      return
+    }
+    if (!formData.email || !formData.password) {
+      setError('Email i lozinka su obavezni')
+      return
+    }
+
+    setLoading(true)
+
+    // 1. Create auth user
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+    })
+
+    if (authError) {
+      setError(authError.message)
+      setLoading(false)
+      return
+    }
+
+    const userId = authData.user.id
+
+    // 2. Insert into profiles
+    const { error: profileError } = await supabase.from('profiles').insert({
+      id: userId,
+      full_name: formData.fullName,
+      email: formData.email,
+      role,
+      city: formData.city,
+      phone: formData.phone,
+    })
+
+    if (profileError) {
+      setError(profileError.message)
+      setLoading(false)
+      return
+    }
+
+    if (role === 'walker') {
+      // 3. Insert walker_profiles
+      const { data: walkerProfile, error: wpError } = await supabase
+        .from('walker_profiles')
+        .insert({
+          user_id: userId,
+          bio: formData.biography,
+          experience: formData.experience,
+          walking_zone: formData.walkingZone,
+          hourly_rate: formData.pricePerWalk ? parseFloat(formData.pricePerWalk) : null,
+          max_dogs: formData.maxDogs === '3+' ? 3 : parseInt(formData.maxDogs) || 1,
+          is_online: false,
+          avg_rating: 0,
+          radius_km: 5,
+        })
+        .select()
+        .single()
+
+      if (wpError) {
+        setError(wpError.message)
+        setLoading(false)
+        return
+      }
+
+      // 4. Insert walker_availability
+      const availability = { walker_id: walkerProfile.id }
+      for (const [croatian, english] of Object.entries(DAY_MAP)) {
+        availability[english] = !!(
+          formData[`${croatian}-Jutro`] ||
+          formData[`${croatian}-Popodne`] ||
+          formData[`${croatian}-Večer`]
+        )
+      }
+      availability.morning_from = '08:00'
+      availability.morning_to = '12:00'
+      availability.afternoon_from = '13:00'
+      availability.afternoon_to = '17:00'
+
+      const { error: avError } = await supabase.from('walker_availability').insert(availability)
+      if (avError) {
+        setError(avError.message)
+        setLoading(false)
+        return
+      }
+
+      navigate('/dashboard/walker')
+    } else {
+      // Owner — dog info stored when dogs table is ready (SQL provided separately)
+      navigate('/dashboard/owner')
+    }
   }
 
   const progressPercent = ((step + 1) / maxSteps) * 100
@@ -114,7 +261,13 @@ function Register() {
             </div>
           </div>
 
-          {/* Step 0 — Account info (both) */}
+          {error && (
+            <div style={{ color: '#e53e3e', fontSize: '14px', margin: '0 0 16px', padding: '10px', background: '#fff5f5', borderRadius: '6px', border: '1px solid #fed7d7' }}>
+              {error}
+            </div>
+          )}
+
+          {/* Step 0 — Account info */}
           {step === 0 && (
             <div className={styles.stepContent}>
               <h2>Kreirajte račun</h2>
@@ -156,11 +309,11 @@ function Register() {
                 />
               </div>
               <div className={styles.socialButtons}>
-                <button className={styles.socialBtn}>
+                <button className={styles.socialBtn} type="button" onClick={() => handleOAuth('google')}>
                   <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" />
                   Google
                 </button>
-                <button className={styles.socialBtn}>
+                <button className={styles.socialBtn} type="button" onClick={() => handleOAuth('apple')}>
                   <img src="https://www.svgrepo.com/show/452222/apple.svg" alt="Apple" />
                   Apple
                 </button>
@@ -168,7 +321,7 @@ function Register() {
             </div>
           )}
 
-          {/* Step 1 — Personal info (both) */}
+          {/* Step 1 — Personal info */}
           {step === 1 && (
             <div className={styles.stepContent}>
               <h2>Osobne informacije</h2>
@@ -435,8 +588,11 @@ function Register() {
             <button
               className={styles.btnNext}
               onClick={step === maxSteps - 1 ? handleRegister : handleNext}
+              disabled={loading}
             >
-              {step === maxSteps - 1 ? 'REGISTRIRAJ SE' : 'DALJE →'}
+              {step === maxSteps - 1
+                ? (loading ? 'REGISTRACIJA...' : 'REGISTRIRAJ SE')
+                : 'DALJE →'}
             </button>
           </div>
 

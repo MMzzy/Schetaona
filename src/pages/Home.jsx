@@ -272,7 +272,7 @@ export default function Home() {
               <div className={styles.ctaCardImg}>
                 <img src="/vlasnik.png" alt="Vlasnik" />
               </div>
-              <button className={styles.ctaBtn} onClick={() => navigate('/register/owner')}>
+              <button className={styles.ctaBtn} onClick={() => navigate('/register?role=owner')}>
                 Vlasnik
               </button>
               <p className={`${styles.ctaDesc} ${styles.ctaDescAnimated}`}>
@@ -286,7 +286,7 @@ export default function Home() {
               <div className={styles.ctaCardImg}>
                 <img src="/setac.png" alt="Šetač" />
               </div>
-              <button className={styles.ctaBtn} onClick={() => navigate('/register/walker')}>
+              <button className={styles.ctaBtn} onClick={() => navigate('/register?role=walker')}>
                 Šetač
               </button>
               <p className={`${styles.ctaDesc} ${styles.ctaDescAnimated}`}>

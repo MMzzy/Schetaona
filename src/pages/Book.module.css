@@ -305,8 +305,9 @@
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 8px;
-  scrollbar-width: none;
+  padding: 8px 8px 8px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #533D2D transparent;
 }
 
 .calStrip::-webkit-scrollbar {

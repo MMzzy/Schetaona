@@ -1,21 +1,42 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import styles from './Login.module.css'
+import { supabase } from '../lib/supabaseClient'
 
 function Login() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
-  const handleSignIn = () => {
-    console.log('Sign in:', { email, password, rememberMe })
+  const handleSignIn = async () => {
+    setError(null)
+    setLoading(true)
+
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (signInError) {
+      setError(signInError.message)
+      setLoading(false)
+      return
+    }
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', data.user.id)
+      .single()
+
+    if (profile?.role === 'walker') navigate('/dashboard/walker')
+    else navigate('/dashboard/owner')
   }
 
   return (
     <div>
       <Navbar />
-
       <div className={styles.loginContainer}>
         <div className={styles.loginWrapper}>
 
@@ -29,6 +50,12 @@ function Login() {
             <div className={styles.formHeader}>
               <h1>Login</h1>
             </div>
+
+            {error && (
+              <div style={{ color: '#e53e3e', fontSize: '14px', marginBottom: '12px', padding: '10px', background: '#fff5f5', borderRadius: '6px', border: '1px solid #fed7d7' }}>
+                {error}
+              </div>
+            )}
 
             <div className={styles.formGroup}>
               <label>Email</label>
@@ -52,6 +79,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.formInput}
+                onKeyDown={(e) => e.key === 'Enter' && handleSignIn()}
               />
             </div>
 
@@ -65,8 +93,8 @@ function Login() {
               <label htmlFor="remember">Remember me</label>
             </div>
 
-            <button onClick={handleSignIn} className={styles.signInBtn}>
-              SIGN IN
+            <button onClick={handleSignIn} className={styles.signInBtn} disabled={loading}>
+              {loading ? 'SIGNING IN...' : 'SIGN IN'}
             </button>
 
             <div className={styles.createAccount}>

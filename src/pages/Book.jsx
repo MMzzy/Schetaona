@@ -66,11 +66,11 @@ const DURATIONS = [
   { label: "90 min", value: 90, price: 1.4 },
 ];
 
-// Generate next 14 days
+// Generate next 60 days
 const getDays = () => {
   const days = [];
   const today = new Date();
-  for (let i = 1; i <= 14; i++) {
+  for (let i = 1; i <= 60; i++) {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
     days.push(d);

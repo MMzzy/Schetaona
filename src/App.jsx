@@ -12,6 +12,7 @@ import RegisterOwner from './pages/RegisterOwner'
 import RegisterWalker from './pages/RegisterWalker'
 import Contact from './pages/Contact'
 import { LanguageProvider } from './context/LanguageContext'
+import { AuthProvider } from './context/AuthContext'
 import './App.css'
 
 
@@ -23,6 +24,7 @@ function ScrollToTop() {
 
 function App() {
   return (
+    <AuthProvider>
     <LanguageProvider>
       <BrowserRouter>
         <ScrollToTop />
@@ -41,6 +43,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </LanguageProvider>
+    </AuthProvider>
   )
 }
 
